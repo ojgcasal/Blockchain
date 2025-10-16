@@ -28,12 +28,11 @@ contract TokenContract {
     }
     function buyTokens() public payable returns (uint256) {
     uint256 price = 5 ether;
-    require(msg.value >= price, "No se envio suficiente Ether");
+    require(msg.value >= price, "No se envio suficiente Ether, 1 Token = 5 Ether");
     uint256 tokensToBuy = msg.value / price;
     require(users[owner].tokens >= tokensToBuy, "Owner sin suficientes tokens");
     users[owner].tokens -= tokensToBuy;
     users[msg.sender].tokens += tokensToBuy;
     return address(this).balance;
 }
-
 }
